@@ -1,0 +1,11 @@
+{
+"storage_path": "storage/",
+"sources_location": "sources.json",
+"debug": true,
+"max_score": 3,
+"s_low": 0.3,
+"s_high": 0.7,
+"smart_llm": "claude-3-5-sonnet-20240620",
+"dumb_llm": "claude-3-haiku-20240307"
+}
+
