@@ -54,14 +54,7 @@ if __name__ == "__main__":
                 new_articles = len(full_articles_df) - len_articles
                 print(new_articles, "New articles detected.")
                 new_articles_df = full_articles_df.tail(new_articles)
-                new_articles_df['qfactor'] = None
-                new_articles_df['qfactor_bool'] = None
-                new_articles_df['summary'] = None
-                new_articles_df['sfactor'] = None
-                new_articles_df['sfactor_bool'] = None
-                new_articles_df['duplicate_articles'] = None
-                new_articles_df['bfactor_str'] = None
-                new_articles_df['article_score'] = None
+                new_articles_df.loc[:, ['qfactor', 'qfactor_bool', 'summary', 'sfactor', 'sfactor_bool', 'duplicate_articles', 'bfactor_str', 'article_score']] = None
                 articles_df = pd.concat([articles_df, new_articles_df], ignore_index=True)
                 articles_raw = articles_df.tail(new_articles)
                 len_articles = len(full_articles_df) # update len_articles
