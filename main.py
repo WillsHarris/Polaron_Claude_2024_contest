@@ -42,20 +42,25 @@ len_articles = len(full_articles_df)
 
 if __name__ == "__main__":
     while True:
-        full_articles_df = pd.read_csv("/home/broton/storage/articles.csv")
-        # loop through test articles:
         if debug:
+            # loop through test articles:
             print("Debug mode on.")
             articles_raw = get_debug_articles(articles_df)
         else:
             time.sleep(60) # check every 60 seconds
+            try:
+                full_articles_df = pd.read_csv("/home/broton/storage/articles.csv")
+            except:
+                print("Error reading full articles.csv.")
+                continue
             # check for new articles
             if len(full_articles_df) > len_articles:
                 new_articles = len(full_articles_df) - len_articles
                 print(new_articles, "New articles detected.")
                 new_articles_df = full_articles_df.tail(new_articles)
-                new_articles_df.loc[:, ['qfactor', 'qfactor_bool', 'summary', 'sfactor', 'sfactor_bool', 'duplicate_articles', 'bfactor_str', 'article_score']] = None
-                articles_df = pd.concat([articles_df, new_articles_df], ignore_index=True)
+                new_empty_df = new_articles_df.copy()
+                new_empty_df.loc[:, ['qfactor', 'qfactor_bool', 'summary', 'sfactor', 'sfactor_bool', 'duplicate_articles', 'bfactor_str', 'article_score']] = None
+                articles_df = pd.concat([articles_df, new_empty_df], ignore_index=True)
                 articles_raw = articles_df.tail(new_articles)
                 len_articles = len(full_articles_df) # update len_articles
             else:
