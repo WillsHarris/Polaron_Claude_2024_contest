@@ -129,7 +129,6 @@ def b_filter(article_idx, llm_name, articles_df):
     summary = articles_df.loc[article_idx, 'summary']
     b_str = llm_get_summary_b_index(summary, llm_name)
 
-
     if b_str == 'reflective': b_bool = False
     elif b_str == 'breaking': b_bool = True
     else:
@@ -144,12 +143,12 @@ def b_filter(article_idx, llm_name, articles_df):
         article_sum = articles_df.loc[article_idx, 'summary']
         article_date = articles_df.loc[article_idx, 'pub_date']
         # run t filter:
-        t_bool, t_dict, reject_reason, breaking_time = get_t_bool(article_title, article_sum, article_date, llm_name='auto')
-        t_dict = str(t_dict)
-        articles_df.loc[article_idx, 't_bool'] = t_bool
-        articles_df.loc[article_idx, 't_dict'] = t_dict
-        articles_df.loc[article_idx, 'breaking_time'] = breaking_time
-        articles_df = log_outcome(article_idx, articles_df, reject_reason)
+        #t_bool, t_dict, reject_reason, breaking_time = get_t_bool(article_title, article_sum, article_date, llm_name='auto')
+        #t_dict = str(t_dict)
+        #articles_df.loc[article_idx, 't_bool'] = t_bool
+        #articles_df.loc[article_idx, 't_dict'] = t_dict
+        #articles_df.loc[article_idx, 'breaking_time'] = breaking_time
+        #articles_df = log_outcome(article_idx, articles_df, reject_reason)
     else:
         print("\033[31m" + "Article is not breaking news, no trade required." + "\033[0m")
         articles_df = log_outcome(article_idx, articles_df, "not breaking")
@@ -168,7 +167,7 @@ def llm_get_summary_b_index(summary, llm_name):
     format_instructions = output_parser.get_format_instructions()
 
     template='''
-    identify weather the text discribes breaking news (breaking) or an analisis of ongoing trends (reflective).
+    Identify whether the text discusses breaking news (breaking), meaning it is new information that has just been released, or reflective news (reflective), meaning it is a summary or analysis of past events.
     {format_instructions}
     text: {summary}  
     '''
@@ -200,9 +199,7 @@ def s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug=False)
     s_bool = True 
 
     if debug:
-        with open("debug.json", 'r') as file:
-            debug_params = json.load(file)
-        chroma_client = chromadb.PersistentClient(path=debug_params["input_dir"])
+        chroma_client = chromadb.PersistentClient(path="storage/")
         sums = chroma_client.get_collection("summaries")
         # include all articles up to the current one
         sums_df = articles_df.loc[articles_df["summary"].notna()].reset_index(drop=True)
@@ -216,7 +213,7 @@ def s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug=False)
                                     ]},
                                 include = ["distances", "metadatas", "documents"])
     else:
-        chroma_client = chromadb.PersistentClient(path=storage_path)
+        chroma_client = chromadb.PersistentClient(path="storage/")
         sums = chroma_client.get_collection("summaries")
         query_dict = sums.query(query_embeddings = target_embedding, 
                                 n_results=5, 
@@ -224,6 +221,9 @@ def s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug=False)
                                 include = ["distances", "metadatas", "documents"])
         
     distances = np.array(query_dict["distances"][0])
+    if len(distances) == 0:
+        print("No similar articles found.")
+        return True, 'different', articles_df
     metadata = np.array(query_dict["metadatas"][0])
     summaries = np.array(query_dict["documents"][0])
     repeat_articles_bool = np.array(query_dict["distances"][0]) < s_low
@@ -292,3 +292,49 @@ def s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug=False)
                 metadatas={"ticker": ticker, "article_id": article_id})
 
     return s_bool, s_type, articles_df
+
+def llm_s_factor_bool(text1, text2, llm_name):
+    reject_reason = None
+
+    # Define the response schemas
+    response_schemas = [ResponseSchema(
+        name="event_similarity",
+        description="Respond with 'same' or 'update' or 'different'. 'update' is for when the articles describe the same news but one has significant additional information"
+    )]
+    
+    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
+    format_instructions = output_parser.get_format_instructions()
+
+    template = '''
+    Are the following two article summaries likely describing the same or different news events?
+    {format_instructions}
+    Summary1: {text1}
+    Summary2: {text2}
+    Respond with 'same' or 'update' or 'different'.
+    '''
+
+    prompt = PromptTemplate(
+        template=template,
+        input_variables=["text1", "text2"],
+        partial_variables={"format_instructions": format_instructions}
+    )
+
+    chat = ChatAnthropic(model=llm_name, temperature=0)
+
+    _input = prompt.format_prompt(text1=text1, text2=text2)
+    output = chat.invoke(_input.to_messages()).content
+    #llm_cost = llm_cost_cents(str(_input), str(output), llm_name)
+
+    try:
+        dict_out = output_parser.parse(output)
+        event_similarity = dict_out['event_similarity']
+        if event_similarity == 'same':
+            bool_out = False
+        else:
+            bool_out = True
+        type_out = event_similarity
+    except:
+        bool_out = False
+        type_out = output
+
+    return bool_out, type_out

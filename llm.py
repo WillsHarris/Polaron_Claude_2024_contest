@@ -11,6 +11,7 @@ from langchain.prompts import PromptTemplate
 from langchain_anthropic import ChatAnthropic
 from langchain.output_parsers import ResponseSchema
 from langchain.output_parsers import StructuredOutputParser
+from openai import OpenAI
 from util import *
 
 # Get the directory that this script is in
@@ -23,6 +24,8 @@ smart_llm = config['smart_llm']
 dumb_llm = config['dumb_llm']
 
 load_dotenv() # load environment variables
+
+client = OpenAI(api_key=os.environ['OPENAI_API_KEY'])
 
 #----------------------------------Token-Tracking ----------------------------------
 
@@ -190,7 +193,7 @@ def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df, 
     
     reason = dict_out['reason']
     articles_df.loc[article_idx, ['article_score', 'reason']] = article_score, reason
-
+    print("Article score:", article_score)
     if article_score == 0:
         print("Article score is 0, no trade required.")
         articles_df = log_outcome(article_idx, articles_df, "article is 0")
