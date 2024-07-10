@@ -76,7 +76,7 @@
         top: 50%; /* Center vertically relative to its parent */
         transform: translate(-50%, -50%); /* Offset the element by half of its width and height */
         font-family: Lexend;
-        font-size: 25px;
+        font-size: 18px;
         color: #000000;
         z-index: 22; /* Ensure the text is above other elements */
     }
@@ -168,28 +168,26 @@
         <div id="reelContainer" class="reel-container">
             <div class="vertical-bar"></div> <!-- Vertical bar added here -->
             <div class="horizontal-line hline-1">
-                <span class="datetime">Date -1</span>
-                <div class="h-tick"></div>
+                
             </div>
             <div class="horizontal-line hline-2">
-                <div class="datetime">Date 0</div>
-                <div class="h-tick"></div>
+                <div class="datetime"></div>
             </div>
             <div class="horizontal-line hline-3">
-                <div class="datetime">Date 1</div>
+                <div class="datetime"> {{dates.0}} </div>
                 <div class="h-tick"></div>
                 <div class="h-tick"></div>
             </div>
             <div class="horizontal-line hline-4">
-                <span class="datetime">Date 2</span>
+                <div class="datetime"> {{dates.1}} </div>
                 <div class="h-tick"></div>
             </div>
             <div class="horizontal-line hline-5">
-                <span class="datetime">Date 3</span>
+                <div class="datetime"> {{dates.2}} </div>
                 <div class="h-tick"></div>
             </div>
             <div class="horizontal-line hline-6">
-                <span class="datetime">Date 4</span>
+              <div class="datetime"> {{dates.3}} </div>
                 <div class="h-tick"></div>
             </div>
             
@@ -207,8 +205,10 @@
                         <h3>Sources</h3>
                     </div>
 
-                    <a href="https://www.bbc.com/news/world-asia-china-57963525" target="_blank">
-                    <img src="{% static 'logos/BBC_bw.png' %}" alt="logo" style="width: 13%; height: auto;">
+                    <a href="{{ urls.0 }}" target="_blank">
+                      {% with logo_path='logos/'|add:news_sources.0|add:'_bw.png' %}
+                      <img src="{% static logo_path %}" alt="news_link" style="width: 13%; height: auto;">
+                      {% endwith %}                    
                     </a>
 
 
@@ -220,6 +220,16 @@
                     <div class="moreText" id="moreText">
                       <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
                       <h3>Context</h3>
+                      <script>
+                        // Access the JSON data using JavaScript
+                        const contexts = JSON.parse("{{ summaries|escapejs }}");
+                        console.log(contexts);
+                        console.log(contexts[0]);
+                
+                        // Use the data in your HTML
+                        document.write('<p>' + contexts[0] + '</p>');
+                    </script>
+                      
                     </div>
 
                     <div class="moreText" id="moreText">
@@ -230,23 +240,9 @@
                   
                 </div>
               </div>
-            
+
               <script>
 
-                const csvFilePath = 'http://127.0.0.1:8080/articles.csv';
-
-                fetch(csvFilePath)
-                    .then(response => response.text())
-                    .then(text => {
-                        Papa.parse(text, {
-                            header: true,
-                            complete: function(results) {
-                                console.log(results.data);
-                                // Here you can handle the parsed data
-                            }
-                        });
-                    })
-                .catch(error => console.error('Error fetching the CSV file:', error));
                 // Function to toggle the moreSection and change the symbol
                 document.getElementById('moreText').addEventListener('click', function() {
                     const moreSection = document.getElementById('moreSection');
@@ -266,9 +262,13 @@
                 });
             
                 //const newsText = 'A Canadian in China admits to stealing Tesla’s battery secrets and plotting to sell them to undercover agents, facing up to 10 years in prison.';
-                const newsText = 'test ' + {{ summary }}  
-                const tickers = ['NVDA']; //
-                const scores = [3]; //
+                const summaries = JSON.parse("{{ summaries|escapejs }}");
+                const scores = "{{ scores|escapejs }}";
+
+                const tickers = "{{ ticker|escapejs }}";
+                const newsText = summaries[0];
+                const ticker = [tickers[0]]; 
+                const score = [scores[0]]; 
                 const post_format = 'below'; // 'wrap' or 'below'
                 const img_path = "{% static 'test_photos/f35.jpg' %}";
                 writeNewsPost(tickers, scores, newsText, post_format, img_path);
