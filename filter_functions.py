@@ -141,13 +141,6 @@ def b_filter(article_idx, llm_name, articles_df):
         article_title = articles_df.loc[article_idx, 'title']
         article_sum = articles_df.loc[article_idx, 'summary']
         article_date = articles_df.loc[article_idx, 'pub_date']
-        # run t filter:
-        #t_bool, t_dict, reject_reason, breaking_time = get_t_bool(article_title, article_sum, article_date, llm_name='auto')
-        #t_dict = str(t_dict)
-        #articles_df.loc[article_idx, 't_bool'] = t_bool
-        #articles_df.loc[article_idx, 't_dict'] = t_dict
-        #articles_df.loc[article_idx, 'breaking_time'] = breaking_time
-        #articles_df = log_outcome(article_idx, articles_df, reject_reason)
     else:
         print("\033[31m" + "Article is not breaking news, no action required." + "\033[0m")
         articles_df = log_outcome(article_idx, articles_df, "not breaking")

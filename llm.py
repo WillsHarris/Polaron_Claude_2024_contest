@@ -12,7 +12,8 @@ from langchain_anthropic import ChatAnthropic
 from langchain.output_parsers import ResponseSchema
 from langchain.output_parsers import StructuredOutputParser
 from openai import OpenAI
-from util import *
+import pandas as pd
+from util import log_outcome
 
 # Get the directory that this script is in
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -41,7 +42,7 @@ def get_embedding(text, model="text-embedding-3-large"):
     text = text.replace("\n", " ")
     return client.embeddings.create(input = [text], model=model).data[0].embedding
 
-#----------------------------------ChatGPT-----------------------------------------
+#----------------------------------LLM-----------------------------------------
 
 def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df):
     multi_stock_mode = False
@@ -78,14 +79,14 @@ def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df):
             asset_tickers = str(other_tickers_tracked)
 
     if multi_stock_mode is False:
-        desc = (  # v1.2.0 score description
+        desc = (
             "Integer within range from -3 to 3 inclusive. -3: extremely bad news, "
             "very rare. -2: very bad news, rare. -1: bad news. 0: neutral or irrelevant news, esp. involving "
             "opinions, should be extremely common. 1: good news, 2: very good news, rare. 3: "
             "extremely good news, very rare."
             )
 
-        prompt = (  # v1.2.0 score prompt
+        prompt = (
             "Based on the following summary of a news article, determine how good or bad the news is for "
             "{asset_name} for stock: {ticker} on an exponential scale. Score 0 for anything (ie opinions) "
             "that is not strictly a reported event. Assume 0 until confident otherwise. If not 0 assume "
@@ -93,14 +94,14 @@ def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df):
             )
     
     if multi_stock_mode is True:
-        desc = (  # v1.2.0 multistock description
+        desc = ( 
             "List of integers with values ranging from -3 to 3 inclusive. -3: extremely bad news, "
             "very rare. -2: very bad news, rare. -1: bad news. 0: neutral or irrelevant news, esp. involving "
             "opinions, should be extremely common. 1: good news, 2: very good news, rare. 3: "
             "extremely good news, very rare."
             )
 
-        prompt = (  # v1.2.0 multistock prompt
+        prompt = (
             "Based on the following summary of a news article, determine how good or bad the news is for "
             "{asset_names} for stocks: {asset_tickers} in that order on an exponential scale. Score 0 for anything (ie opinions) "
             "that is not strictly a reported event. Assume 0 until confident otherwise. If not 0 assume "
@@ -526,7 +527,7 @@ def create_post_text(asset_name, summary, llm_name):
     return caption_out
 
 
-# ---------------------------------- For Social Posts ----------------------------------
+# ---------------------------------- For Posts ----------------------------------
 
 def get_company_wiki_link(company_name, ticker, llm_name):
 
@@ -679,45 +680,3 @@ def create_supplementary_note(topic, wiki_body, summary, llm_name):
     is_helpful = dict_out['is_helpful']
 
     return supplementary_note, is_helpful
-
-def get_reflective_news_summary(news, ticker, llm_name):
-    response_schemas = [
-        ResponseSchema(
-            name="summary",
-            description="Brief summary of the news",
-            type = "string" 
-
-        )
-    ]
-
-    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-    format_instructions = output_parser.get_format_instructions()
-    
-    # build the prompt
-    template="""
-    provide a very brief summary of the provided news as it related to the ticker. 
-    Write assuming it the news has already happened and is not breaking. Use incomplete sentences to shorten length
-    """ 
-    
-    template+="""
-    {format_instructions}
-    news = {news}
-    news = {ticker}
-    Do not include comments in the output JSON string.
-    """
-
-    prompt = PromptTemplate(
-        template=template,
-        input_variables=['news', 'ticker'],
-        partial_variables={"format_instructions": format_instructions} 
-    )
-    _input = prompt.format_prompt(news=news, ticker=ticker) 
-    chat = ChatAnthropic(model=llm_name, temperature=0)
-    output = chat.invoke(_input.to_messages()).content
-    
-    dict_out = output_parser.parse(output)
-    
-    # extract data from dict_out
-    summary = dict_out['summary']
-    
-    return summary
