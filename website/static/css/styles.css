@@ -1,0 +1,74 @@
+body {
+    font-family: 'Lexend', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+}
+
+
+.logo {
+    position: absolute;
+    left: 5.5%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    width: 120px;
+    transition: width 0.4s ease;
+}
+
+.tabs-container {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.tabs {
+    display: inline-block;
+}
+
+.tab {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    font-size: 1.5rem;
+}
+
+.tab-icon {
+    width: 20px; /* Adjust the size as needed */
+    height: auto;
+}
+
+.tab-icon-LR {
+    width: 10px; /* Adjust the size as needed */
+    margin-right: 10px; /* Adjust the spacing as needed */
+    height: auto;
+}
+
+.tab:hover {
+    opacity: 0.5;
+}
+
+main {
+    margin-top: 80px; 
+    padding-top: 0px;
+    padding: 0; /* Ensure no padding */
+    transition: margin-top 0.4s ease;
+}

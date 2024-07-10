@@ -1,0 +1,356 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<style>
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100vh; /* Set the height to full viewport height */
+        overflow: hidden; /* Prevent scrolling on the body */
+    }
+    
+    .reel-container {
+        height: 100vh; /* Full viewport height */
+        overflow-y: scroll; /* Enable vertical scrolling */
+        scroll-snap-type: y mandatory; /* Enable vertical scroll snapping */
+    }
+    
+    .reel-container::before,
+    .reel-container::after {
+        content: ""; /* This property is necessary for the pseudo-element to display */
+        position: absolute; /* Position the pseudo-elements absolutely within the .reel-container */
+        width: 100%; /* Full width to cover the .reel-container */
+        height: 100px; /* Adjust the height as needed for the fade effect */
+        z-index: 200; /* Ensure they are above the content but below any positioned elements */
+    }
+    
+    .reel-container::before {
+        top: 0;
+        background: linear-gradient(to bottom, #fff, transparent); /* Fade from white at the top to transparent */
+    }
+    
+    .reel-container::after {
+        bottom: 0;
+        background: linear-gradient(to top, #fff, transparent); /* Fade from white at the bottom to transparent */
+    }
+    
+    .reel-pane {
+        height: 100vh; /* Each pane takes full viewport height */
+        scroll-snap-align: end; /* Snap align to the top */
+        display: flex;
+        justify-content: center; /* Center content horizontally */
+        align-content: center;
+        align-items: stretch; /* Center content vertically */
+        font-family: 'Lexend';font-size: 100px;
+        border-bottom: 1px solid #ffffff; /* Separate panes visually */
+    }
+    
+    .vertical-bar {
+        position: absolute;
+        left: 0%; /* Adjust this value as needed */
+        top: 0;
+        bottom: 0;
+        /* add right border line */
+        border-right: 3px solid #000000;
+        width: 10%; /* Adjust the thickness of the bar */
+        /* add background gradient -- gray on right, white on left */
+        background: linear-gradient(to right, #ffffff, rgba(238, 238, 238, 0.777));
+        z-index: 20; /* Ensure the bar is above the pseudo-element and panes */
+    }
+    
+    .horizontal-line {
+        position: absolute;
+        left: 0%; /* Align with the vertical bar, adjust as necessary */
+        top: 50%; /* Start in the middle of the viewport */
+        width: 12%; /* Match the width of the vertical bar */
+        height: 23%; /* Height of the horizontal line */
+        background-color: #d5d5d500; /* Color of the line */
+        z-index: 21; /* Ensure the line is above the vertical bar */
+        transform: translateY(-50%); /* Shift the element up by half its height */
+    }
+    
+    .datetime {
+        position: absolute;
+        left: 50%; /* Center horizontally relative to its parent */
+        top: 50%; /* Center vertically relative to its parent */
+        transform: translate(-50%, -50%); /* Offset the element by half of its width and height */
+        font-family: Lexend;
+        font-size: 25px;
+        color: #000000;
+        z-index: 22; /* Ensure the text is above other elements */
+    }
+    
+    .h-tick {
+        position: absolute;
+        left: 85%; /* Align with the vertical bar, adjust as necessary */
+        top: 50%; /* Start in the middle of the viewport */
+        transform: translate(0%, -50%);
+        width: 7%; /* Match the width of the vertical bar */
+        height: 3px; /* Height of the horizontal line */
+        background-color: #000000; /* Color of the line */
+        z-index: 21; /* Ensure the line is above the vertical bar */
+        border-radius: 5px;
+    }
+    
+    canvas {
+        max-width: 45%;
+        max-height: 30%;
+        /* border: 1px solid red; */
+        display: block;
+        margin-left: 20%;
+        transition: margin-left 0.4s ease;
+        }
+    
+    #moreSection {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 22%;
+        height: 100%;
+        border-left: 1px solid #000000;
+        padding: 10px;
+        background: linear-gradient(to right, #f5f3f3, white);
+        font-family: Lexend;
+        font-size: 15px;
+        color: #000000;
+    }
+    .moreText {
+        /* cursor: pointer;
+        color: blue; */
+        /* text-decoration: underline; */
+        font-family: Lexend;
+        font-size: 15px;
+        color: #000000;
+        display: flex;
+        align-items: center; /* Aligns items vertically centered */
+    }
+    .moreText:hover {
+    opacity: 0.5;
+    }
+    </style>
+<head>
+    <title>Events</title>
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <script src="{% static 'js/drawBearometer.js' %}"></script>
+    <script src="{% static 'js/semicircleText.js' %}"></script>
+    <script src="{% static 'js/imageScaled.js' %}"></script>
+    <script src="{% static 'js/writeNewsPost.js' %}"></script>
+    
+    <header class="top-bar">
+      <div class="logo">
+          <a href="{% url 'index' %}">
+              <img src="{% static 'images/logo_green.png' %}" alt="Logo">
+          </a>
+      </div>
+      <nav class="tabs-container">
+          <a href="{% url 'events' %}" class="tab">
+              <img src="{% static 'images/news_icon.png' %}" alt="News Icon" class="tab-icon" style="width: 20px;"> Events
+          </a>
+          <a href="{% url 'search' %}" class="tab">
+              <img src="{% static 'images/search_icon.png' %}" alt="Search Icon" class="tab-icon" style="width: 17px;"> Search
+          </a>
+      </nav>
+      <a class="tab" style="position: absolute; right: 5%;">
+          <img src="{% static 'images/filters_icon.png' %}" alt="Filter Icon" class="tab-icon" style="width: 22px;">
+      </a>
+  </header>
+
+    <!-- Main Content -->
+    <main>
+        <div id="reelContainer" class="reel-container">
+            <div class="vertical-bar"></div> <!-- Vertical bar added here -->
+            <div class="horizontal-line hline-1">
+                <span class="datetime">Date -1</span>
+                <div class="h-tick"></div>
+            </div>
+            <div class="horizontal-line hline-2">
+                <div class="datetime">Date 0</div>
+                <div class="h-tick"></div>
+            </div>
+            <div class="horizontal-line hline-3">
+                <div class="datetime">Date 1</div>
+                <div class="h-tick"></div>
+                <div class="h-tick"></div>
+            </div>
+            <div class="horizontal-line hline-4">
+                <span class="datetime">Date 2</span>
+                <div class="h-tick"></div>
+            </div>
+            <div class="horizontal-line hline-5">
+                <span class="datetime">Date 3</span>
+                <div class="h-tick"></div>
+            </div>
+            <div class="horizontal-line hline-6">
+                <span class="datetime">Date 4</span>
+                <div class="h-tick"></div>
+            </div>
+            
+            <div class="reel-pane">
+              <!-- Event 1 -->
+              <div style="position: relative;">
+                <canvas id="myCanvas" width="8000" height="3000" style="position:relative; top: 23%; left: 7%;"></canvas>
+                <div class="moreText" id="moreText" style="position:absolute; top: 50%; left: 75%;">
+                    <img src="{% static 'images/left_icon.png' %}" alt="News Icon" class="tab-icon-LR">
+                </div>
+                <div id="moreSection">
+                    
+                    <div class="moreText" id="moreText">
+                        <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
+                        <h3>Sources</h3>
+                    </div>
+
+                    <a href="https://www.bbc.com/news/world-asia-china-57963525" target="_blank">
+                    <img src="{% static 'logos/BBC_bw.png' %}" alt="logo" style="width: 13%; height: auto;">
+                    </a>
+
+
+                    <div class="moreText" id="moreText">
+                      <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
+                      <h3>Updates</h3>
+                    </div>
+
+                    <div class="moreText" id="moreText">
+                      <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
+                      <h3>Context</h3>
+                    </div>
+
+                    <div class="moreText" id="moreText">
+                      <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
+                      <h3>NVDA stock</h3>
+                    </div>
+
+                  
+                </div>
+              </div>
+            
+              <script>
+
+                const csvFilePath = 'http://127.0.0.1:8080/articles.csv';
+
+                fetch(csvFilePath)
+                    .then(response => response.text())
+                    .then(text => {
+                        Papa.parse(text, {
+                            header: true,
+                            complete: function(results) {
+                                console.log(results.data);
+                                // Here you can handle the parsed data
+                            }
+                        });
+                    })
+                .catch(error => console.error('Error fetching the CSV file:', error));
+                // Function to toggle the moreSection and change the symbol
+                document.getElementById('moreText').addEventListener('click', function() {
+                    const moreSection = document.getElementById('moreSection');
+                    const moreText = document.getElementById('moreText');
+                    const canvas = document.getElementById('myCanvas');
+                    
+                    if (moreSection.style.display === 'block') {
+                        moreSection.style.display = 'none';
+                        moreText.innerHTML = '<img src="{% static 'images/left_icon.png' %}" alt="News Icon" class="tab-icon-LR">';
+                        // change canvas margin left
+                        canvas.style.marginLeft = '20%';
+                    } else {
+                        moreSection.style.display = 'block';
+                        moreText.innerHTML = '<img src="{% static 'images/right_icon.png' %}" alt="News Icon" class="tab-icon-LR">';
+                        canvas.style.marginLeft = '14%';
+                    }
+                });
+            
+                //const newsText = 'A Canadian in China admits to stealing Tesla’s battery secrets and plotting to sell them to undercover agents, facing up to 10 years in prison.';
+                const newsText = 'test ' + {{ summary }}  
+                const tickers = ['NVDA']; //
+                const scores = [3]; //
+                const post_format = 'below'; // 'wrap' or 'below'
+                const img_path = "{% static 'test_photos/f35.jpg' %}";
+                writeNewsPost(tickers, scores, newsText, post_format, img_path);
+              </script>
+            </div>
+            <div class="reel-pane">Event 2</div>
+            <div class="reel-pane">Event 3</div>
+            <!-- Add more panes as needed -->
+            </div>
+            
+            <script>
+
+            
+            let lastScrollTop = 0;
+            let isScrolling;
+            
+            function initializePositions() {
+              const lines = document.querySelectorAll('.horizontal-line');
+              lines.forEach((line, index) => {
+                line.style.top = `calc(${50 * (index / 2)}% + 0px)`; 
+              });
+            }
+            
+            // Call this function on page load and on scroll
+            document.addEventListener('DOMContentLoaded', initializePositions);
+            
+            const lines = document.querySelectorAll('.horizontal-line');
+            
+            document.getElementById('reelContainer').addEventListener('scroll', function() {
+              window.clearTimeout(isScrolling);
+              const st = this.scrollTop;
+              
+              if (st > lastScrollTop) {
+                lines.forEach((line, index) => {
+                  // Scrolling down
+                  line.style.top = `calc(${50*(index/2)}% - ${st * 1/4}px)`; // Move up slightly, adjust the multiplier as needed
+                });
+              } else if (st < lastScrollTop) {
+                lines.forEach((line, index) => {
+                  // Scrolling up
+                  line.style.top = `calc(${50*(index/2)}% - ${st * 1/4}px)`; // Move down slightly, adjust the multiplier as needed
+                });
+              } 
+            
+              isScrolling = setTimeout(() => {
+                if (st > lastScrollTop) {
+                  // Scrolling down, jump to next pane
+                  scrollToNextPane(this);
+                } else if (st < lastScrollTop) {
+                  // Scrolling up, jump to previous pane
+                  scrollToPreviousPane(this);
+                }
+                lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+                closeMoreSection();
+              }, 6000); // A short timeout duration
+            }, false);
+            
+            function scrollToNextPane(container) {
+              const panes = container.querySelectorAll('.reel-pane');
+              for (let i = 0; i < panes.length; i++) {
+                const paneTop = panes[i].offsetTop;
+                const paneHeight = panes[i].offsetHeight;
+                if (paneTop + paneHeight / 2 > container.scrollTop) {
+                  container.scrollTo({ top: paneTop, behavior: 'smooth' });
+                  break;
+                }
+              }
+            }
+            
+            function scrollToPreviousPane(container) {
+              const panes = container.querySelectorAll('.reel-pane');
+              for (let i = panes.length - 1; i >= 0; i--) {
+                const paneTop = panes[i].offsetTop;
+                if (paneTop + panes[i].offsetHeight / 2 < container.scrollTop) {
+                  container.scrollTo({ top: paneTop, behavior: 'smooth' });
+                  break;
+                }
+              }
+            }
+            
+    </script>
+</main>
+<script src="{% static 'js/navbar_resizing.js' %}"></script>
+</body>
+</html>

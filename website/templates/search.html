@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Search</title>
+    <link href='https://fonts.googleapis.com/css?family=Lexend' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<style>
+        .form-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh; /* This will ensure the form is vertically centered */
+            padding-top: 50px; /* Add padding-top to create vertical space */
+        }
+        form {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        input[type="text"] {
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 10px;
+            width: 400px;
+            font-size: 16px; /* Increased font size */
+        }
+        button {
+            border: 1px solid #000000;
+            border-radius: 5px;
+            padding: 10px 10px;
+            background-color: white;
+            cursor: pointer;
+        }
+</style>
+<body>
+    <header class="top-bar">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/logo_green.png' %}" alt="Logo">
+            </a>
+        </div>
+        <nav class="tabs-container">
+            <a href="{% url 'events' %}" class="tab">
+                <img src="{% static 'images/news_icon.png' %}" alt="News Icon" class="tab-icon" style="width: 20px;"> Events
+            </a>
+            <a href="{% url 'search' %}" class="tab">
+                <img src="{% static 'images/search_icon.png' %}" alt="Search Icon" class="tab-icon" style="width: 17px;"> Search
+            </a>
+        </nav>
+        <a class="tab" style="position: absolute; right: 5%;">
+            <img src="{% static 'images/filters_icon.png' %}" alt="Filter Icon" class="tab-icon" style="width: 22px;">
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Add search bar -->
+        <div class="form-wrapper">
+            <form action="search.html" method="get">
+                <input type="text" name="search" id="search" placeholder="Search...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </main>
+    <script src="{% static 'js/navbar_resizing.js' %}"></script>
+</body>
+</html>
