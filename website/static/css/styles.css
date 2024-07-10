@@ -4,6 +4,10 @@ body {
     padding: 0;
 }
 
+p {
+    font-size: 10px;
+
+}
 
 .top-bar {
     position: fixed;

@@ -61,37 +61,42 @@ function writeNewsPost(tickers, scores, newsText, post_format='wrap', img_path=n
   drawGauge(ctx, centerX, centerY, radius, lineWidth, sf, arc_colors, numberOfArcs, score, score2, delta_r);
 
 
-  function drawImageAndLine() {
-    var img = new Image();
-    img.src = img_path;
+  // function drawImageAndLine() {
+  //   var img = new Image();
+  //   img.src = img_path;
   
-    img.onload = function() {
-      var w = img.width;
-      var h = img.height;
-      var aspectRatio = w / h;
-      var img_x = -(centerX - radius - (lineWidth * sf) / 2) + (c.width - (aspectRatio * radius)); // such that right edge is at right edge of canvas
-      ctx.drawImage(img, img_x, centerY - radius, radius * aspectRatio, radius);
+  //   img.onload = function() {
+  //     var w = img.width;
+  //     var h = img.height;
+  //     var aspectRatio = w / h;
+  //     var img_x = -(centerX - radius - (lineWidth * sf) / 2) + (c.width - (aspectRatio * radius)); // such that right edge is at right edge of canvas
+  //     ctx.drawImage(img, img_x, centerY - radius, radius * aspectRatio, radius);
   
-      // add vertical line to canvas
-      var line_x = ((centerX + radius + (lineWidth * sf) / 2) + img_x) / 2.05;
-      ctx.beginPath();
-      ctx.moveTo(line_x, centerY - radius);
-      ctx.lineTo(line_x, centerY);
-      ctx.lineWidth = 1 * lineWidth;
-      // make it dashed
-      // ctx.setLineDash([5, 35]);
-      ctx.strokeStyle = '#000000';
-      ctx.stroke();
-    };
+  //     // add vertical line to canvas
+  //     var line_x = ((centerX + radius + (lineWidth * sf) / 2) + img_x) / 2.05;
+  //     ctx.beginPath();
+  //     ctx.moveTo(line_x, centerY - radius);
+  //     ctx.lineTo(line_x, centerY);
+  //     ctx.lineWidth = 1 * lineWidth;
+  //     // make it dashed
+  //     // ctx.setLineDash([5, 35]);
+  //     ctx.strokeStyle = '#000000';
+  //     ctx.stroke();
+  //   };
   
-    img.onerror = function() {
-      console.error("Failed to load image");
-      // Optionally, you can display a placeholder image or retry loading
-    };
-  }
+  //   img.onerror = function() {
+  //     console.error("Failed to load image");
+  //     // Optionally, you can display a placeholder image or retry loading
+  //   };
+  // }
   
-  // Call the function to draw the image and line
-  drawImageAndLine();
+
+  // // place main text
+  // if (post_format == 'wrap') {
+  // }
+  // else {
+  //   // drawImageAndLine();
+  // }
 
 
   function addLogos() {

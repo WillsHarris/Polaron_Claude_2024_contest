@@ -46,9 +46,42 @@ def events_view(request):
         ns = ns.replace(' ', '_')
         news_sources.append(ns)
 
-    
-    # Render the values in the template
+    # make the horizontal lines and dates html
+    dates_html = ''
+    for i in range(len(dates)):
+        dates_html += f'''
+            <div class="horizontal-line hline-{i+1}">
+                <div class="datetime"> {dates[i]} </div>
+                <div class="h-tick"></div>
+            </div>
+        '''
 
+    
+    # Generate HTML for the reel panes
+    reel_panes_html = ''
+    for i in range(len(summaries)):
+        reel_panes_html += """
+            <div class="reel-pane">
+                event {i}
+                <div>
+                    <canvas id="myCanvas-{i}" width="8000" height="3000" style="position:relative; top: 23%; left: 7%;"></canvas>
+                </div>
+                <script>
+                    var newsText = test;
+                    var ticker = test;
+                    var score = 0;
+                    var post_format = 'below';
+                    var img_path = test;
+                    writeNewsPost(ticker, score, newsText, post_format, img_path, 'myCanvas-{i}');
+                </script>
+            </div>
+        """.replace('{i}', str(i))
+        
+    
+    
+
+
+    # Render the values in the template
     context = {
         'summaries': json.dumps(summaries),
         'scores': json.dumps(scores),
@@ -56,9 +89,12 @@ def events_view(request):
         'urls': urls,
         'dates': dates,
         'news_sources': news_sources,
-        'contexts': json.dumps(contexts)
+        'contexts': json.dumps(contexts),
+        'dates_html': dates_html,
+        'reel_panes_html': reel_panes_html
     }
     return render(request, 'events.html', context)
+    
 
 def search_view(request):
     return render(request, 'search.html')

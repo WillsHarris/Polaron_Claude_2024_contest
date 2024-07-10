@@ -125,7 +125,13 @@
         color: #000000;
         display: flex;
         align-items: center; /* Aligns items vertically centered */
+        align-items: flex-start;
+        justify-content: flex-start;
     }
+    /* #moreSection p {
+        font-size: 10px;
+
+    } */
     .moreText:hover {
     opacity: 0.5;
     }
@@ -173,69 +179,45 @@
             <div class="horizontal-line hline-2">
                 <div class="datetime"></div>
             </div>
-            <div class="horizontal-line hline-3">
-                <div class="datetime"> {{dates.0}} </div>
-                <div class="h-tick"></div>
-                <div class="h-tick"></div>
-            </div>
-            <div class="horizontal-line hline-4">
-                <div class="datetime"> {{dates.1}} </div>
-                <div class="h-tick"></div>
-            </div>
-            <div class="horizontal-line hline-5">
-                <div class="datetime"> {{dates.2}} </div>
-                <div class="h-tick"></div>
-            </div>
-            <div class="horizontal-line hline-6">
-              <div class="datetime"> {{dates.3}} </div>
-                <div class="h-tick"></div>
-            </div>
-            
+            <!-- Insert generated horizontal lines and datetime elements -->
+            {{ dates_html|safe }}
+
             <div class="reel-pane">
               <!-- Event 1 -->
               <div style="position: relative;">
-                <canvas id="myCanvas" width="8000" height="3000" style="position:relative; top: 23%; left: 7%;"></canvas>
+                <canvas id="myCanvas" width="8000" height="3000" style="position:relative; top: 33%; left: 7%;"></canvas>
                 <div class="moreText" id="moreText" style="position:absolute; top: 50%; left: 75%;">
                     <img src="{% static 'images/left_icon.png' %}" alt="News Icon" class="tab-icon-LR">
                 </div>
                 <div id="moreSection">
                     
                     <div class="moreText" id="moreText">
-                        <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
-                        <h3>Sources</h3>
+                        <!-- <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;"> -->
+                        <h3>Sources:</h3>
                     </div>
 
                     <a href="{{ urls.0 }}" target="_blank">
                       {% with logo_path='logos/'|add:news_sources.0|add:'_bw.png' %}
-                      <img src="{% static logo_path %}" alt="news_link" style="width: 13%; height: auto;">
+                      <img src="{% static logo_path %}" alt="news_link" style="width: 15%; height: auto;">
                       {% endwith %}                    
                     </a>
 
 
+      
                     <div class="moreText" id="moreText">
-                      <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
-                      <h3>Updates</h3>
+                      <!-- <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;"> -->
+                      <h3>Context:</h3>           
                     </div>
+                    <script>
+                      // Access the JSON data using JavaScript
+                      const contexts = JSON.parse("{{ contexts|escapejs }}");
+                      console.log(contexts);
+                      console.log(contexts[0]);
+              
+                      // Use the data in your HTML
+                      document.write('<p style="font-size: 12px;">' + contexts[0] + '</p>');
+                  </script>
 
-                    <div class="moreText" id="moreText">
-                      <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
-                      <h3>Context</h3>
-                      <script>
-                        // Access the JSON data using JavaScript
-                        const contexts = JSON.parse("{{ summaries|escapejs }}");
-                        console.log(contexts);
-                        console.log(contexts[0]);
-                
-                        // Use the data in your HTML
-                        document.write('<p>' + contexts[0] + '</p>');
-                    </script>
-                      
-                    </div>
-
-                    <div class="moreText" id="moreText">
-                      <img src="{% static 'images/down_icon.png' %}" alt="News Icon" class="tab-icon-LR" style="width: 12px; padding-right: 12px;">
-                      <h3>NVDA stock</h3>
-                    </div>
 
                   
                 </div>
@@ -262,21 +244,21 @@
                 });
             
                 //const newsText = 'A Canadian in China admits to stealing Tesla’s battery secrets and plotting to sell them to undercover agents, facing up to 10 years in prison.';
-                const summaries = JSON.parse("{{ summaries|escapejs }}");
-                const scores = "{{ scores|escapejs }}";
+                var summaries = JSON.parse("{{ summaries|escapejs }}");
+                var scores = "{{ scores|escapejs }}";
 
-                const tickers = "{{ ticker|escapejs }}";
-                const newsText = summaries[0];
-                const ticker = [tickers[0]]; 
-                const score = [scores[0]]; 
-                const post_format = 'below'; // 'wrap' or 'below'
-                const img_path = "{% static 'test_photos/f35.jpg' %}";
+                var tickers = "{{ ticker|escapejs }}";
+                var newsText = summaries[0];
+                var ticker = [tickers[0]]; 
+                var score = [scores[0]]; 
+                var post_format = 'wrap'; // 'wrap' or 'below'
+                var img_path = "{% static 'test_photos/f35.jpg' %}";
                 writeNewsPost(tickers, scores, newsText, post_format, img_path);
               </script>
             </div>
             <div class="reel-pane">Event 2</div>
             <div class="reel-pane">Event 3</div>
-            <!-- Add more panes as needed -->
+            
             </div>
             
             <script>
