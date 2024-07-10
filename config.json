@@ -1,5 +1,5 @@
 {
-"storage_path": "storage/",
+"storage_path": "website/data/",
 "sources_location": "sources.json",
 "debug": true,
 "max_score": 3,

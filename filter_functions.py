@@ -120,7 +120,6 @@ def q_filter(article_idx, assets_df, articles_df, debug=False):
     article_id = articles_df.loc[article_idx, 'article_id']
     if not q_bool: 
         print("\033[31m" + "Article rejected: " + reject_reason + "\033[0m")
-        articles_df = log_outcome(article_idx, articles_df, "q-filter")
         articles_df = log_outcome(article_idx, articles_df, reject_reason)
 
     return articles_df, q_bool
@@ -150,7 +149,7 @@ def b_filter(article_idx, llm_name, articles_df):
         #articles_df.loc[article_idx, 'breaking_time'] = breaking_time
         #articles_df = log_outcome(article_idx, articles_df, reject_reason)
     else:
-        print("\033[31m" + "Article is not breaking news, no trade required." + "\033[0m")
+        print("\033[31m" + "Article is not breaking news, no action required." + "\033[0m")
         articles_df = log_outcome(article_idx, articles_df, "not breaking")
 
     return b_bool, b_str, articles_df
@@ -199,7 +198,7 @@ def s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug=False)
     s_bool = True 
 
     if debug:
-        chroma_client = chromadb.PersistentClient(path="storage/")
+        chroma_client = chromadb.PersistentClient(path=storage_path)
         sums = chroma_client.get_collection("summaries")
         # include all articles up to the current one
         sums_df = articles_df.loc[articles_df["summary"].notna()].reset_index(drop=True)
@@ -213,7 +212,7 @@ def s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug=False)
                                     ]},
                                 include = ["distances", "metadatas", "documents"])
     else:
-        chroma_client = chromadb.PersistentClient(path="storage/")
+        chroma_client = chromadb.PersistentClient(path=storage_path)
         sums = chroma_client.get_collection("summaries")
         query_dict = sums.query(query_embeddings = target_embedding, 
                                 n_results=5, 

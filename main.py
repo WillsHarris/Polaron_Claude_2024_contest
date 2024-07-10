@@ -14,7 +14,6 @@ import numpy as np
 import openai
 from util import *
 from llm import *
-from plotNpost import post_story, post_update
 from filter_functions import s_filter, b_filter, q_filter
 import pytz
 import traceback
@@ -37,6 +36,7 @@ max_score = config['max_score']
 
 assets_df = pd.read_csv(os.path.join(storage_path, "assets.csv"))
 articles_df = pd.read_csv(os.path.join(storage_path, "articles.csv"))
+stories_df = pd.read_csv(os.path.join(storage_path, "stories.csv"))
 full_articles_df = pd.read_csv("/home/broton/storage/articles.csv")
 len_articles = len(full_articles_df)
 
@@ -72,44 +72,34 @@ if __name__ == "__main__":
         for article_idx in articles_raw.index:
             # q-filter:
             articles_df, q_bool = q_filter(article_idx, assets_df, articles_df, debug)
-            if not q_bool: 
+            if not q_bool and not debug: 
                 articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
                 continue # reset loop
 
             #summarize article:
             article_sum, on_topic_bool, articles_df = llm_get_summary(article_idx, dumb_llm, assets_df, articles_df)
-            if not on_topic_bool:
+            if not on_topic_bool and not debug:
                 articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
                 continue # reset loop
 
             # s-filter:
             s_bool, s_type, articles_df = s_filter(article_idx, s_low, s_high, storage_path, articles_df, debug)
-            if not s_bool:
+            if not s_bool and not debug:
                 articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
-                continue # reset loop
-            if s_type == "update": # update post
-                #posts_df, articles_df = post_update(article_idx, articles_df, posts_df, dev_mode, debug)
-                print("update post")
                 continue # reset loop
 
             # b-filter:
             b_bool, b_str, articles_df = b_filter(article_idx, dumb_llm, articles_df)
-            if not b_bool:
+            if not b_bool and not debug:
                 articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
                 continue # reset loop
             # news type filter:
             news_type, articles_df = llm_get_summary_metadata(article_idx, dumb_llm, assets_df, articles_df)
             if news_type in ['earnings', 'financial', 'macroeconomic', \
-                                'market analysis', 'opinion', 'management' ,'other']:
+                                'market analysis', 'opinion', 'management' ,'other'] and not debug:
                 articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
-                print("News type not relevant.")
+                print("News type is out of scope.")
                 continue # reset loop
-            elif news_type == 'product': 
-                articles_df = get_product_aux(article_idx, dumb_llm, articles_df, storage_path)
-            elif news_type == 'acquisition (of a company)':
-                articles_df = get_acquisition_aux(article_idx, dumb_llm, articles_df, storage_path)
-            elif news_type == 'regulatory':
-                articles_df = get_regulatory_aux(article_idx, dumb_llm, articles_df, storage_path)
 
             # get the article score:
             article_score, articles_df = llm_score_summary(article_idx,
@@ -121,9 +111,10 @@ if __name__ == "__main__":
             # do nothing if article score is 0:
             if article_score == 0:
                 print("Article score is 0.")
-
-            articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
-            # social media post
-            #posts_df, articles_df = post_story(article_idx, articles_df, posts_df, dev_mode, debug)
+            # add story to stories_df:
+            stories_df = add_story(article_idx, smart_llm, stories_df, articles_df, assets_df, debug)
+            if not debug:
+                articles_df.to_csv(os.path.join(storage_path, 'articles.csv'), index=False)
+                stories_df.to_csv(os.path.join(storage_path, 'stories.csv'), index=False)
         if debug:
             break

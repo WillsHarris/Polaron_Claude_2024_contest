@@ -43,7 +43,7 @@ def get_embedding(text, model="text-embedding-3-large"):
 
 #----------------------------------ChatGPT-----------------------------------------
 
-def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df, prompt_version='1.2.0'):
+def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df):
     multi_stock_mode = False
     ticker = articles_df.loc[article_idx, 'source_ticker']
     asset_name = assets_df.loc[assets_df['ticker'] == ticker, 'name'].iloc[0]
@@ -77,64 +77,35 @@ def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df, 
             asset_names = str(co_names_tracked)
             asset_tickers = str(other_tickers_tracked)
 
-    # Select prompt version
-    # --- v1.1.1 ---
-    if prompt_version == '1.1.1':
-        if multi_stock_mode is False:
-            desc = ( # v1.1.1 score description
-                "Integer within range from -3 to 3 inclusive. "
-                "A lower (higher) score indicates recommendation to sell (buy) "
-                "equity in the underlying asset. Respond with 0 if the news is unrelated "
-                "or has no significant impact on {asset_name}."
-                )
-            
-            prompt = ( # v1.1.1 prompt
-                "Determine a score for the investment potential of asset {asset_name} "
-                "(ticker symbols {ticker}) based on the provided news."
-                )
-        
-        if multi_stock_mode is True:
-            desc = ( #v1.1.1 multistock description
-                "List of integers with values ranging from -3 to 3 inclusive. "
-                "A lower (higher) score indicates recommendation to sell (buy) equity in the underlying asset. "
-                "Order scores to match the provided asset list, {asset_names}. List elements should be 0 if the news "
-                "is unrelated or has no significant impact on that asset."
-                )
-            
-            prompt =( #v1.1.1 multistock prompt
-                "Determine scores for the investment potential of assets {asset_names} "
-                "(ticker symbols {asset_tickers}) based on the provided news."
-                )
-    elif prompt_version == '1.2.0':
-        if multi_stock_mode is False:
-            desc = (  # v1.2.0 score description
-                "Integer within range from -3 to 3 inclusive. -3: extremely bad news, "
-                "very rare. -2: very bad news, rare. -1: bad news. 0: neutral or irrelevant news, esp. involving "
-                "opinions, should be extremely common. 1: good news, 2: very good news, rare. 3: "
-                "extremely good news, very rare."
-                )
+    if multi_stock_mode is False:
+        desc = (  # v1.2.0 score description
+            "Integer within range from -3 to 3 inclusive. -3: extremely bad news, "
+            "very rare. -2: very bad news, rare. -1: bad news. 0: neutral or irrelevant news, esp. involving "
+            "opinions, should be extremely common. 1: good news, 2: very good news, rare. 3: "
+            "extremely good news, very rare."
+            )
 
-            prompt = (  # v1.2.0 score prompt
-                "Based on the following summary of a news article, determine how good or bad the news is for "
-                "{asset_name} for stock: {ticker} on an exponential scale. Score 0 for anything (ie opinions) "
-                "that is not strictly a reported event. Assume 0 until confident otherwise. If not 0 assume "
-                "+/- 1's until confident in +/- 2's, etc."
-                )
-        
-        if multi_stock_mode is True:
-            desc = (  # v1.2.0 multistock description
-                "List of integers with values ranging from -3 to 3 inclusive. -3: extremely bad news, "
-                "very rare. -2: very bad news, rare. -1: bad news. 0: neutral or irrelevant news, esp. involving "
-                "opinions, should be extremely common. 1: good news, 2: very good news, rare. 3: "
-                "extremely good news, very rare."
-                )
+        prompt = (  # v1.2.0 score prompt
+            "Based on the following summary of a news article, determine how good or bad the news is for "
+            "{asset_name} for stock: {ticker} on an exponential scale. Score 0 for anything (ie opinions) "
+            "that is not strictly a reported event. Assume 0 until confident otherwise. If not 0 assume "
+            "+/- 1's until confident in +/- 2's, etc."
+            )
+    
+    if multi_stock_mode is True:
+        desc = (  # v1.2.0 multistock description
+            "List of integers with values ranging from -3 to 3 inclusive. -3: extremely bad news, "
+            "very rare. -2: very bad news, rare. -1: bad news. 0: neutral or irrelevant news, esp. involving "
+            "opinions, should be extremely common. 1: good news, 2: very good news, rare. 3: "
+            "extremely good news, very rare."
+            )
 
-            prompt = (  # v1.2.0 multistock prompt
-                "Based on the following summary of a news article, determine how good or bad the news is for "
-                "{asset_names} for stocks: {asset_tickers} in that order on an exponential scale. Score 0 for anything (ie opinions) "
-                "that is not strictly a reported event. Assume 0 until confident otherwise. If not 0 assume "
-                "+/- 1's until confident in +/- 2's, etc."
-                )
+        prompt = (  # v1.2.0 multistock prompt
+            "Based on the following summary of a news article, determine how good or bad the news is for "
+            "{asset_names} for stocks: {asset_tickers} in that order on an exponential scale. Score 0 for anything (ie opinions) "
+            "that is not strictly a reported event. Assume 0 until confident otherwise. If not 0 assume "
+            "+/- 1's until confident in +/- 2's, etc."
+            )
         
     # -------------
 
@@ -195,7 +166,7 @@ def llm_score_summary(article_idx, max_score, llm_name, assets_df, articles_df, 
     articles_df.loc[article_idx, ['article_score', 'reason']] = article_score, reason
     print("Article score:", article_score)
     if article_score == 0:
-        print("Article score is 0, no trade required.")
+        print("Article score is 0, no action required.")
         articles_df = log_outcome(article_idx, articles_df, "article is 0")
 
     return article_score, articles_df
@@ -521,59 +492,7 @@ def llm_get_summary_metadata(article_idx, llm_name, assets_df, articles_df):
         articles_df = log_outcome(article_idx, articles_df, "news_type not relevant")
     return news_type, articles_df   
 
-def clean_summary_keyphrases(summary, summary_keyphrases):
-    kps = []
-    for kp in summary_keyphrases:
-        kp_spit_L = kp.split("' ")
-        if len(kp_spit_L) > 1:
-            pre_sum = summary.split(kp)[0]
-            if " '" in pre_sum:
-                continue
-        kp_split_R = kp.split(" '")
-        if len(kp_split_R) > 1:
-            post_sum = summary.split(kp)[-1]
-            if "' " in post_sum:
-                continue
-        kps.append(kp)
-    return kps
-
-def llm_get_summary_keyphrases(summary, llm_name):
-    # define the response schemas
-    response_schemas = [ResponseSchema(
-        name="phrases",
-        description="A list of the key phrases and no addidtal text", 
-        type="list"
-    )]
-
-
-    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-    format_instructions = output_parser.get_format_instructions()
-
-    template='''
-    Identify and list keywords or key phrases in the text that independently encapsulate the central message.
-    limit the number of key phrases to 2. Dont key only part of a quote.\
-    {format_instructions}
-    text: {summary}  
-    '''
-
-    prompt = PromptTemplate(
-        template=template,
-        input_variables=["summary"],
-        partial_variables={"format_instructions": format_instructions}
-        )
-  
-    chat = ChatAnthropic(model=llm_name, temperature=0)
-
-    _input = prompt.format_prompt(summary=summary)
-    output = chat.invoke(_input.to_messages()).content
-
-    dict_out = output_parser.parse(output)
-    phrases_out = dict_out['phrases']
-    phrases_out = clean_summary_keyphrases(summary, phrases_out)
-
-    return phrases_out
-
-def create_social_text(asset_name, summary, llm_name):
+def create_post_text(asset_name, summary, llm_name):
     # define the response schemas
     response_schemas = [ResponseSchema(
         name="caption",
@@ -605,207 +524,6 @@ def create_social_text(asset_name, summary, llm_name):
     dict_out = output_parser.parse(output)
     caption_out = dict_out['caption']
     return caption_out
-
-#----------------------------------Aux LLMs-----------------------------------------
-
-def get_product_aux(article_idx, llm_name, articles_df, storage_path):
-    product_news = articles_df.iloc[article_idx]['summary']
-    article_id = articles_df.iloc[article_idx]['article_id']
-
-    response_schemas = [
-        ResponseSchema(
-            name="product_names",
-            description="A list of product names mentioned in the product_news",
-            type = "list" 
-        ),
-        ResponseSchema(
-            name="product_statuses",
-            description="A list of statuses for each product identified, indicating whether each one is 'unreleased' or 'existing'",
-            type = "list" 
-        ),
-        ResponseSchema(
-            name="information_availability",
-            description="A boolean indicating whether the information about product names and statuses is available or applicable",
-            type = "bool" 
-        )
-    ]
-
-    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-    format_instructions = output_parser.get_format_instructions()
-    
-    # build the prompt
-    template="""
-    Identify the name of the product or products in a list that are mentioned in the provided product_news and indicate if it is an unreleased product or an existing one.
-    """ 
-    
-    template+="""
-    {format_instructions}
-    product_news = {product_news}
-
-    Do not include comments in the output JSON string.
-    """
-
-    prompt = PromptTemplate(
-        template=template,
-        input_variables=['product_news'],
-        partial_variables={"format_instructions": format_instructions} 
-    )
-    _input = prompt.format_prompt(product_news=product_news) 
-    chat = ChatAnthropic(model=llm_name, temperature=0)
-    output = chat.invoke(_input.to_messages()).content
-    
-    dict_out = output_parser.parse(output)
-
-    # update the aux_df from dict_out
-    col_names = ['product_names', 'product_statuses', 'information_availability']
-    for col_name in col_names:
-        col_val = dict_out[col_name]
-        if type(col_val) == str and col_name != 'information_availability':
-            col_val = [col_val]
-        if type(col_val) == list:
-            col_val = str(col_val)
-        add_to_aux('product', article_id, col_name, col_val, storage_path)
-    
-    return articles_df
-
-def get_acquisition_aux(article_idx, llm_name, articles_df, storage_path):
-    acquisition_news = articles_df.iloc[article_idx]['summary']
-    response_schemas = [
-        ResponseSchema(
-            name="acquired_company",
-            description="The name of the company that is being acquired.",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="acquiring_company",
-            description="The name of the company that is acquiring the other company.",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="acquisition_status",
-            description="The current status of the acquisition (completed or under consideration).",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="acquisition_price",
-            description="The price at which the acquisition is taking place (in $B), if the information is available.",
-            type = "float" 
-        ),
-        ResponseSchema(
-            name="missing_information",
-            description="A list of information that is not provided in the acquisition news.",
-            type = "list" 
-        )
-    ]
-
-    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-    format_instructions = output_parser.get_format_instructions()
-    
-    # build the prompt
-    template="""
-    Analyze the provided acquisition news to identify the companies involved, the status of the acquisition, and the acquisition price if available.
-    """ 
-    
-    template+="""
-    {format_instructions}
-    acquisition_news = {acquisition_news}
-
-    Do not include comments in the output JSON string.
-    """
-
-    prompt = PromptTemplate(
-        template=template,
-        input_variables=['acquisition_news'],
-        partial_variables={"format_instructions": format_instructions} 
-    )
-    _input = prompt.format_prompt(acquisition_news=acquisition_news) 
-    chat = ChatAnthropic(model=llm_name, temperature=0)
-    output = chat.invoke(_input.to_messages()).content
-    
-    dict_out = output_parser.parse(output)
-
-    # update the aux_df from dict_out
-    article_id = articles_df.iloc[article_idx]['article_id']
-    col_names = ['acquired_company', 'acquiring_company', 'acquisition_status', 'acquisition_price', 'missing_information']
-    for col_name in col_names:
-        col_val = dict_out[col_name]
-        if type(col_val) == list:
-            col_val = str(col_val)
-        add_to_aux('acquisition', article_id, col_name, col_val, storage_path)
-
-    return articles_df
-
-def get_regulatory_aux(article_idx, llm_name, articles_df, storage_path):
-    regulatory_news = articles_df.iloc[article_idx]['summary']
-    response_schemas = [
-        ResponseSchema(
-            name="regulatory_body",
-            description="The name of the regulatory body mentioned in the news (e.g., 'FDA', 'CDC')",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="country_of_regulatory_body",
-            description="The country where the regulatory body operates",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="stage_of_regulation",
-            description="The current stage of the regulation process (e.g., 'proposed', 'under way', 'complete')",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="impacted_entity",
-            description="The specific product or service impacted by the regulation, or 'full corporation' if the entire company is affected",
-            type = "string" 
-        ),
-        ResponseSchema(
-            name="fine_amount",
-            description="The amount of any fine (in $B) that is mentioned in the news, if available",
-            type = "float" 
-        ),
-        ResponseSchema(
-            name="unavailable_data",
-            description="A list of the above prompt names that are not available from the regulatory news",
-            type = "list" 
-        )
-    ]
-
-    output_parser = StructuredOutputParser.from_response_schemas(response_schemas)
-    format_instructions = output_parser.get_format_instructions()
-    
-    # build the prompt
-    template="""
-    Analyze the provided regulatory news to extract key information about the regulatory body, country, stage of regulation, fine amount, and any unavailable data.
-    """ 
-    
-    template+="""
-    {format_instructions}
-    regulatory_news = {regulatory_news}
-
-    Do not include comments in the output JSON string.
-    """
-
-    prompt = PromptTemplate(
-        template=template,
-        input_variables=['regulatory_news'],
-        partial_variables={"format_instructions": format_instructions} 
-    )
-    _input = prompt.format_prompt(regulatory_news=regulatory_news) 
-    chat = ChatAnthropic(model=llm_name, temperature=0)
-    output = chat.invoke(_input.to_messages()).content
-    
-    dict_out = output_parser.parse(output)
-    
-    # update the aux_df from dict_out
-    article_id = articles_df.iloc[article_idx]['article_id']
-    col_names = ['regulatory_body', 'country_of_regulatory_body', 'stage_of_regulation', 'impacted_entity', 'fine_amount', 'unavailable_data']
-    for col_name in col_names:
-        col_val = dict_out[col_name]
-        if type(col_val) == list:
-            col_val = str(col_val)
-        add_to_aux('regulatory', article_id, col_name, col_val, storage_path)
-
-    return articles_df
 
 
 # ---------------------------------- For Social Posts ----------------------------------
@@ -869,7 +587,7 @@ def extract_topics_to_expand_on(articles_df, article_idx, llm_name=smart_llm):
         ),
         ResponseSchema(
             name="familiarity_scores",
-            description="List of percentages (integers from 0 to 100, in icroments of 20) representing how likely an avarage investor would know about each topic",
+            description="List of percentages (integers from 0 to 100, in increments of 10) representing how likely an avarage investor would know about each topic",
             type = "list" 
         ),
         ResponseSchema(
@@ -933,7 +651,7 @@ def create_supplementary_note(topic, wiki_body, summary, llm_name):
     # build the prompt
     template="""
     Generate a brief (one/two sentence) note explaining the 'topic' using information from a 'wiki_body'. 
-    If possible, give financial details or relivent context from wiki_body that most help assess the impact of the provided news on the underlying company.
+    If possible, give financial details or relevant context from wiki_body that most help assess the impact of the provided news on the underlying company.
     """ 
 
     template+="""
