@@ -4,6 +4,12 @@ import csv
 import os
 import pandas as pd
 import json
+import sys
+sys.path.append('../')
+from llm import get_embedding
+from django.http import HttpResponse, JsonResponse
+import chromadb
+import numpy as np
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -61,4 +67,36 @@ def events_view(request):
     return render(request, 'events.html', context)
 
 def search_view(request):
-    return render(request, 'search.html')
+
+    query = request.GET.get('search', '')
+    articles_path = os.path.join(BASE_DIR, 'data/articles.csv')
+    articles_df = pd.read_csv(articles_path)
+
+    # get search embedding
+    if query == "":
+        return render(request, 'search.html')
+    search_embedding = get_embedding(query)
+
+    chroma_client = chromadb.PersistentClient(path="../website/data/")
+    sums = chroma_client.get_collection("summaries")
+
+    query_dict = sums.query(query_embeddings = search_embedding, 
+                            n_results=5, 
+                            include = ["distances", "metadatas"])
+
+    distances = np.array(query_dict["distances"][0])
+    metadata = np.array(query_dict["metadatas"][0])
+
+    article_ids = {"article_id": [metadata[i]["article_id"] for i in range(len(metadata))],
+                "distance": distances}
+    search_results = pd.DataFrame(article_ids)
+    full_search_results = pd.merge(search_results, articles_df, on="article_id")
+
+    context = {
+        'title': full_search_results['title'].tolist(),
+        'summary': full_search_results['summary'].tolist(),
+        'link': full_search_results['url'].tolist()
+    }
+    results = [{k: v[i] for k, v in context.items()} for i in range(len(context['title']))]
+
+    return JsonResponse({'results': results})
