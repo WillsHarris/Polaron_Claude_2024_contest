@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:146.0) Gecko/20100101 Firefox/146.0" version="29.3.0">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="538" dy="388" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="969" dy="698" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -84,6 +84,9 @@
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-19" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;p style=&quot;language:en-US;margin-top:0pt;margin-bottom:0pt;margin-left:0in;&amp;lt;br/&amp;gt;text-align:center;direction:ltr;unicode-bidi:embed;mso-line-break-override:&amp;lt;br/&amp;gt;none;word-break:normal;punctuation-wrap:hanging&quot;&gt;Custom Live Research&lt;/p&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="760" y="675" as="geometry" />
+        </mxCell>
+        <mxCell id="Oia8nKd8XiABpBGvYPqJ-20" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="News letters / Podcast" vertex="1">
+          <mxGeometry height="60" width="120" x="500" y="740" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
