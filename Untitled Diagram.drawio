@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:146.0) Gecko/20100101 Firefox/146.0" version="29.3.0">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="2034" dy="2496" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1147" dy="1789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -70,8 +70,8 @@
         <mxCell id="7u9cWyLz9qaHTlkB6z8w-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;" value="&lt;div&gt;&lt;b style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Revenue&lt;/b&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="25" width="115" x="261" y="827.5" as="geometry" />
         </mxCell>
-        <mxCell id="U2fmAERIVfJeCMd8gEpM-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div align=&quot;left&quot;&gt;Content&lt;/div&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scraper&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scoring&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Fin. Data&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stories&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stock-Action Bot&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;&lt;div&gt;Predictions Markets&lt;/div&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stock Spotlight&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Economic Data Analisis&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scope&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Event Detection&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Memes&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Video Extractor&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="496" width="156.25" x="532.94" y="73.06" as="geometry" />
+        <mxCell id="U2fmAERIVfJeCMd8gEpM-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div&gt;Content&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="22.9" width="100" x="375" y="330" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#999999);strokeColor=light-dark(#000000,transparent);" value="&lt;p style=&quot;language:en-US;margin-top:0pt;margin-bottom:0pt;margin-left:0in;&amp;lt;br/&amp;gt;text-align:center;direction:ltr;unicode-bidi:embed;mso-line-break-override:&amp;lt;br/&amp;gt;none;word-break:normal;punctuation-wrap:hanging&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 102));&quot;&gt;API&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="647" y="502" as="geometry" />
@@ -98,7 +98,7 @@
           <mxGeometry height="60" width="120" x="1012" y="502" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;labelBorderColor=none;fontColor=light-dark(#000000,#CCCCCC);fillColor=light-dark(#FFFFFF,#E6E6E6);" value="" vertex="1">
-          <mxGeometry height="480" width="1160" x="197" y="-270" as="geometry" />
+          <mxGeometry height="540" width="1160" x="197" y="-330" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-34" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fontColor=light-dark(#000000,#999999);strokeColor=none;fillColor=light-dark(#FFFFFF,#808080);" value="" vertex="1">
           <mxGeometry height="200" width="389" x="487" y="-30" as="geometry" />
@@ -113,12 +113,6 @@
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="680.87" y="144" as="sourcePoint" />
             <mxPoint x="680.87" y="24" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="Oia8nKd8XiABpBGvYPqJ-40" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=light-dark(#000000,#000000);" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="685" y="170" as="sourcePoint" />
-            <mxPoint x="427" y="300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-44" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;" value="&lt;b&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0));&quot;&gt;Features&lt;/span&gt;&lt;/b&gt;" vertex="1">
@@ -161,12 +155,12 @@
           <mxGeometry height="90" width="230" x="967" y="-8.75" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-55" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fontColor=light-dark(#000000,#999999);strokeColor=none;fillColor=light-dark(#FFFFFF,#808080);" value="" vertex="1">
-          <mxGeometry height="200" width="389" x="248" y="-250" as="geometry" />
+          <mxGeometry height="200" width="389" x="240" y="-265" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-56" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 12px;&quot;&gt;- Event Detection&lt;/font&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="230" x="318" y="-193.75" as="geometry" />
+          <mxGeometry height="90" width="230" x="310" y="-208.75" as="geometry" />
         </mxCell>
-        <mxCell id="Oia8nKd8XiABpBGvYPqJ-57" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#999999);strokeColor=light-dark(#000000,transparent);" value="&lt;span&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;p style=&quot;language:en-US;margin-top:0pt;margin-bottom:0pt;margin-left:0in;&amp;lt;br/&amp;gt;text-align:center;direction:ltr;unicode-bidi:embed;mso-line-break-override:&amp;lt;br/&amp;gt;none;word-break:normal;punctuation-wrap:hanging&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 102));&quot;&gt;AI-Profiling&lt;/span&gt;&lt;/font&gt;&lt;/p&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0);&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;color: rgba(0, 0, 0, 0);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="Oia8nKd8XiABpBGvYPqJ-57" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=light-dark(#FFFFFF,#999999);strokeColor=light-dark(#000000,transparent);" value="&lt;div&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 102));&quot;&gt;AI-Profiling&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;color: light-dark(rgb(0, 0, 0), rgb(255, 255, 102));&quot;&gt;Socials&lt;/span&gt;&lt;/font&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="1147" y="502" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-58" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;strokeColor=light-dark(#FFFFFF,#999999);strokeWidth=3;entryX=0.5;entryY=0;entryDx=0;entryDy=0;opacity=50;" target="7u9cWyLz9qaHTlkB6z8w-18" value="">
@@ -242,7 +236,13 @@
           <mxGeometry height="25" width="149" x="905" y="312.5" as="geometry" />
         </mxCell>
         <mxCell id="Oia8nKd8XiABpBGvYPqJ-71" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div&gt;Journal Club&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="496" width="156.25" x="1159.995" y="77.00500000000005" as="geometry" />
+          <mxGeometry height="42.99" width="156.25" x="937.49" y="303.51" as="geometry" />
+        </mxCell>
+        <mxCell id="c4TFEKBJSHTugZRI-rLR-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div&gt;Journal Club&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="42.99" width="156.25" x="966" y="303.51" as="geometry" />
+        </mxCell>
+        <mxCell id="c4TFEKBJSHTugZRI-rLR-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div align=&quot;left&quot;&gt;Content&lt;/div&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scraper&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scoring&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Fin. Data&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stories&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stock-Action Bot&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;&lt;div&gt;Predictions Markets&lt;/div&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stock Spotlight&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Economic Data Analisis&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scope&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Event Detection&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Memes&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Video Extractor&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="429.06" width="156.25" x="637.005" y="100.43500000000006" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
