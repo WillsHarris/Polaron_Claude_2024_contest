@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:146.0) Gecko/20100101 Firefox/146.0" version="29.3.0">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="1448" dy="1971" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1619" dy="2073" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -223,9 +223,6 @@
         <mxCell id="c4TFEKBJSHTugZRI-rLR-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div&gt;Journal Club&lt;/div&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="42.99" width="156.25" x="1058" y="303.51" as="geometry" />
         </mxCell>
-        <mxCell id="c4TFEKBJSHTugZRI-rLR-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;&lt;div align=&quot;left&quot;&gt;Content&lt;/div&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scraper&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scoring&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Fin. Data&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stock-Action Bot&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;&lt;div&gt;Predictions Markets&lt;/div&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stories&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Stock Spotlight&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Economic Data Analisis&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Scope&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Event Detection&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Memes&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Video Extractor&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="369.86" width="156.25" x="1195.75" y="-265" as="geometry" />
-        </mxCell>
         <mxCell id="scj_ySWDgmkLvQeb61s4-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="Scraper" vertex="1">
           <mxGeometry height="22.9" width="100" x="383.5" y="330" as="geometry" />
         </mxCell>
@@ -363,6 +360,24 @@
         </mxCell>
         <mxCell id="scj_ySWDgmkLvQeb61s4-29" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div align=&quot;left&quot;&gt;- 3I&#39;s&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;- Post-traded analysis / tooning&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;- Asset lookup tool (may include data on competitors, SEC data, info we previously extracted on how that stock moves from given news, and or in relation to other assets)&amp;nbsp;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&amp;nbsp;&lt;/div&gt;" vertex="1">
           <mxGeometry height="300" width="200" x="251" y="-74" as="geometry" />
+        </mxCell>
+        <mxCell id="scj_ySWDgmkLvQeb61s4-32" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fontColor=light-dark(#000000,#999999);strokeColor=none;fillColor=light-dark(#FFFFFF,#808080);" value="" vertex="1">
+          <mxGeometry height="330" width="213" x="734" y="-346.25" as="geometry" />
+        </mxCell>
+        <mxCell id="scj_ySWDgmkLvQeb61s4-33" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div align=&quot;left&quot;&gt;- SEC data /&amp;nbsp;data analysis&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;- FRED data&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;- US agencies ()&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;- International&amp;nbsp;agencies&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&amp;nbsp;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="200" x="740.5" y="-320" as="geometry" />
+        </mxCell>
+        <mxCell id="scj_ySWDgmkLvQeb61s4-39" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fontColor=light-dark(#000000,#999999);strokeColor=none;fillColor=light-dark(#FFFFFF,#808080);" value="" vertex="1">
+          <mxGeometry height="200" width="232.5" x="963.25" y="-330" as="geometry" />
+        </mxCell>
+        <mxCell id="scj_ySWDgmkLvQeb61s4-40" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;center&quot;&gt;&lt;div&gt;Content&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="22.9" width="100" x="631.5" y="-20" as="geometry" />
+        </mxCell>
+        <mxCell id="scj_ySWDgmkLvQeb61s4-41" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=11;fontColor=light-dark(#000000,#000000);" value="Entertainment" vertex="1">
+          <mxGeometry height="22.9" width="100" x="562" y="-3" as="geometry" />
+        </mxCell>
+        <mxCell id="scj_ySWDgmkLvQeb61s4-42" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=11;fontColor=light-dark(#000000,#000000);" value="Informational" vertex="1">
+          <mxGeometry height="22.9" width="100" x="689" y="-3" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
