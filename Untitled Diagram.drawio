@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.4">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="1296" dy="1853" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1240" dy="1820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -418,7 +418,7 @@
         <mxCell id="LX8HVu6-zlxA8JvhxEY_-23" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;-&amp;nbsp;&lt;/b&gt;&lt;font&gt;&lt;b&gt;Stock Spotlight: &lt;/b&gt;in-depth overview of given ticker, using a deep websearch and our own data (for x-posts, web articles)&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="28.1" width="197" x="407.97" y="38.25" as="geometry" />
         </mxCell>
-        <mxCell id="LX8HVu6-zlxA8JvhxEY_-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;-&amp;nbsp;&lt;/b&gt;&lt;font&gt;&lt;b&gt;Econ-Data analyzer: &lt;/b&gt;tool with access to multiple sources of macro data and an algo to extract notworty trends / signals&lt;b&gt;&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="LX8HVu6-zlxA8JvhxEY_-24" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;-&amp;nbsp;&lt;/b&gt;&lt;font&gt;&lt;b&gt;Macro-Data analyzer: &lt;/b&gt;tool with access to multiple sources of macro data and an algo to extract notworty trends / signals&lt;b&gt;&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="39.2" width="197.03" x="407.97" y="68.8" as="geometry" />
         </mxCell>
         <mxCell id="LX8HVu6-zlxA8JvhxEY_-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;- &lt;/b&gt;&lt;font&gt;&lt;b&gt;Daily Market Recaps:&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
@@ -459,6 +459,24 @@
         </mxCell>
         <mxCell id="LX8HVu6-zlxA8JvhxEY_-37" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;b&gt;AI-Predictions&lt;/b&gt;" vertex="1">
           <mxGeometry height="22.9" width="100" x="1075.1100000000001" y="5.050000000000011" as="geometry" />
+        </mxCell>
+        <mxCell id="LX8HVu6-zlxA8JvhxEY_-38" edge="1" parent="1" source="Oia8nKd8XiABpBGvYPqJ-53" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#FFFFFF,#FF0000);strokeWidth=3;opacity=50;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" target="LX8HVu6-zlxA8JvhxEY_-24" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="672" y="108" as="sourcePoint" />
+            <mxPoint x="903" y="222" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LX8HVu6-zlxA8JvhxEY_-39" edge="1" parent="1" source="Oia8nKd8XiABpBGvYPqJ-53" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#FFFFFF,#FF0000);strokeWidth=3;opacity=50;exitX=0.855;exitY=0.145;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.145;entryY=0.855;entryDx=0;entryDy=0;entryPerimeter=0;" target="scj_ySWDgmkLvQeb61s4-32" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="1244.85" y="-186.39999999999998" as="sourcePoint" />
+            <mxPoint x="1100.003846153846" y="-46.39999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="LX8HVu6-zlxA8JvhxEY_-41" edge="1" parent="1" source="LX8HVu6-zlxA8JvhxEY_-33" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#FFFFFF,#FF0000);strokeWidth=3;opacity=50;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="LX8HVu6-zlxA8JvhxEY_-23" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="496.25" y="-140" as="sourcePoint" />
+            <mxPoint x="467.25" y="-114" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
