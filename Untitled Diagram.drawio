@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.4">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="497" dy="1440" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="702" dy="1581" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -352,7 +352,7 @@
         <mxCell id="scj_ySWDgmkLvQeb61s4-39" parent="1" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fontColor=light-dark(#000000,#999999);strokeColor=none;fillColor=light-dark(#FFFFFF,#808080);" value="" vertex="1">
           <mxGeometry height="200" width="232.5" x="924.5" y="-320" as="geometry" />
         </mxCell>
-        <mxCell id="scj_ySWDgmkLvQeb61s4-40" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;center&quot;&gt;&lt;div&gt;Content&lt;/div&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="scj_ySWDgmkLvQeb61s4-40" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;center&quot;&gt;&lt;div&gt;&lt;b&gt;Content&lt;/b&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="22.9" width="100" x="438.5" y="-11" as="geometry" />
         </mxCell>
         <mxCell id="scj_ySWDgmkLvQeb61s4-41" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=11;fontColor=light-dark(#000000,#000000);" value="&lt;i&gt;Entertainment&lt;/i&gt;" vertex="1">
@@ -386,7 +386,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="RlOIHS4P76cEV-Cx-ynq-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;- Memes:&lt;/b&gt;&amp;nbsp;&lt;font&gt;AI-assisted. Extract top headlines from market recaps to generate meme suggestions&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="66" width="136.06" x="310" y="30.25" as="geometry" />
+          <mxGeometry height="66" width="128" x="322.5" y="21" as="geometry" />
         </mxCell>
         <mxCell id="RlOIHS4P76cEV-Cx-ynq-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;- Video Clip Extractor:&lt;/b&gt;&amp;nbsp;temp&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="26" width="136.06" x="306" y="87" as="geometry" />
