@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.4">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="1198" dy="1921" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1273" dy="1973" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -217,10 +217,10 @@
         <mxCell id="scj_ySWDgmkLvQeb61s4-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="Scoring" vertex="1">
           <mxGeometry height="22.9" width="100" x="512" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="scj_ySWDgmkLvQeb61s4-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;Financial data&lt;/div&gt;" vertex="1">
+        <mxCell id="scj_ySWDgmkLvQeb61s4-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;Financial Data&lt;/div&gt;" vertex="1">
           <mxGeometry height="22.9" width="110.06" x="549.9100000000001" y="324.97" as="geometry" />
         </mxCell>
-        <mxCell id="scj_ySWDgmkLvQeb61s4-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="Price-Action bot" vertex="1">
+        <mxCell id="scj_ySWDgmkLvQeb61s4-4" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="Price-Action Bot" vertex="1">
           <mxGeometry height="22.9" width="153.58" x="571.6600000000001" y="303.21" as="geometry" />
         </mxCell>
         <mxCell id="scj_ySWDgmkLvQeb61s4-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=270;strokeWidth=1;fontSize=16;fontColor=light-dark(#000000,#000000);" value="&lt;div align=&quot;left&quot;&gt;AI-Predictions&lt;/div&gt;" vertex="1">
