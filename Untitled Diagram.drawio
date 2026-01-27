@@ -442,7 +442,7 @@
         <mxCell id="LX8HVu6-zlxA8JvhxEY_-33" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot; align=&quot;left&quot;&gt;&lt;div&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;- Asset lookup tool:&lt;/b&gt; may include data on competitors, SEC data, info we previously extracted on how that stock moves from given news, and or in relation to other assets&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="82.45" width="156" x="517" y="-222.45" as="geometry" />
         </mxCell>
-        <mxCell id="LX8HVu6-zlxA8JvhxEY_-34" edge="1" parent="1" source="xF2A5m92SqrilCv1hKsR-5" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#FFFFFF,#999999);strokeWidth=3;opacity=50;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="scj_ySWDgmkLvQeb61s4-4" value="">
+        <mxCell id="LX8HVu6-zlxA8JvhxEY_-34" edge="1" parent="1" source="scj_ySWDgmkLvQeb61s4-32" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#FFFFFF,#999999);strokeWidth=3;opacity=50;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="scj_ySWDgmkLvQeb61s4-4" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="968.5" y="7.8799999999999955" as="sourcePoint" />
             <mxPoint x="907" y="326.88" as="targetPoint" />
@@ -493,14 +493,8 @@
         <mxCell id="xF2A5m92SqrilCv1hKsR-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h2 class=&quot;text_h2__9Rct5  widgets_udocHeadingWrapper__aW6__ widgets_udocHeadingOneWrapper__DkM2V widgets_udocHeadingOne__xZnht&quot;&gt;Insider Trades&lt;/h2&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="677" y="117.35000000000002" as="geometry" />
         </mxCell>
-        <mxCell id="xF2A5m92SqrilCv1hKsR-6" edge="1" parent="1" source="scj_ySWDgmkLvQeb61s4-32" style="endArrow=classic;html=1;rounded=0;strokeColor=light-dark(#FFFFFF,#999999);strokeWidth=3;opacity=50;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" target="xF2A5m92SqrilCv1hKsR-5" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="957" y="-18" as="sourcePoint" />
-            <mxPoint x="648" y="273" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="xF2A5m92SqrilCv1hKsR-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;h2 class=&quot;text_h2__9Rct5  widgets_udocHeadingWrapper__aW6__ widgets_udocHeadingOneWrapper__DkM2V widgets_udocHeadingOne__xZnht&quot;&gt;&lt;a class=&quot;text_a__ppAoT  widgets_udocHeadingWrapper__aW6__ widgets_udocHeadingTwoWrapper__Qatv6 widgets_udocHeadingTwo__ddjF4&quot; target=&quot;_blank&quot; href=&quot;https://site.financialmodelingprep.com/developer/docs/stable/senate-trading&quot;&gt;Senate/House trading activity&lt;/a&gt;&lt;/h2&gt;" vertex="1">
-          <mxGeometry height="30" width="60" x="755.97" y="118.3" as="geometry" />
+        <mxCell id="xF2A5m92SqrilCv1hKsR-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Senit / house trading activity" vertex="1">
+          <mxGeometry height="30" width="60" x="720" y="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
