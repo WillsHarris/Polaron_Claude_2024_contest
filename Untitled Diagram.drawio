@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:147.0) Gecko/20100101 Firefox/147.0" version="29.3.4">
   <diagram name="Page-1" id="LK20pNTa-0dfXQW5qeE-">
-    <mxGraphModel dx="864" dy="1602" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2593" dy="2605" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -497,7 +497,7 @@
           <mxGeometry height="30" width="110" x="771.5" y="27.950000000000003" as="geometry" />
         </mxCell>
         <mxCell id="xF2A5m92SqrilCv1hKsR-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;rotation=0;strokeWidth=1;fontSize=16;" value="&lt;div style=&quot;line-height: 70%;&quot;&gt;&lt;div align=&quot;left&quot;&gt;&lt;font style=&quot;font-size: 10px; color: light-dark(rgb(0, 0, 0), rgb(0, 0, 0)); line-height: 70%;&quot;&gt;&lt;b&gt;-&lt;/b&gt;&lt;font&gt;&lt;b&gt;&amp;nbsp;Anomaly detector:&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="28.1" width="200" x="261" y="181.9" as="geometry" />
+          <mxGeometry height="28.1" width="200" x="301.87" y="147.35000000000002" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
